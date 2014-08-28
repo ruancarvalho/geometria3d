@@ -1,0 +1,10 @@
+/* style.css */
+
+* {
+	margin: 0;
+	overflow: visible;
+}
+
+body {
+	background-color: white; 
+}
