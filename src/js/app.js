@@ -1,6 +1,13 @@
-// once everything is loaded, we run our Three.js stuff.
+/// <reference path="_references.js" />
+
 $(function () {
-	// here we'll put the Three.js stuff
+	
+	this.geometria3D = this.geometria3D || {};
+	var app = this.geometria3D;
+
+	function initialize() {
+		
+	}
 
 	var controls = new function() {
 		this.rotationSpeed = 0.02;

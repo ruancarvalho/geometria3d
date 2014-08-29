@@ -9,10 +9,18 @@
 	<script type="text/javascript" src="libs/jquery.min.js"></script>
 	<script type="text/javascript" src="libs/stats.min.js"></script>
 	<script type="text/javascript" src="libs/dat.gui.min.js"></script>
+
+	<script type="text/javascript" src="js/geometria3D.js"></script>
 </head>
 <body>
 	<div id="stats"></div>
 	<div id="viewport"> </div>
-	<script type="text/javascript" src="js/app.js"> </script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			geometria3D.initialize();
+			$("#viewport").append(geometria3D.renderer.domElement);
+			geometria3D.render();
+		});
+	</script>
 </body>
 </html>
