@@ -31,7 +31,13 @@
 			1000
 		);
 
-		this.renderer = new THREE.WebGLRenderer();
+		if ( Detector.webgl ) {
+			//this.renderer = new THREE.WebGLRenderer();
+			this.renderer = new THREE.WebGLRenderer( {antialias:true} );
+		}
+		else
+			renderer = new THREE.CanvasRenderer(); 
+
 		this.renderer.setClearColor(0x222222);
 		this.renderer.setSize(w, h);
 
@@ -40,9 +46,9 @@
 		this.scene.add(axes);
 
 		// setup default camera
-		this.camera.position.x = -45;
-		this.camera.position.y = 45;
-		this.camera.position.z = 45;
+		this.camera.position.x = -15;
+		this.camera.position.y = 15;
+		this.camera.position.z = 15;
 		this.camera.lookAt(this.scene.position);
 
 		var size = 10;
@@ -175,12 +181,68 @@
 		);
 		
 		var cube = new THREE.Mesh(BoxGeometry, cubeMaterial);
-		cube.position.x = -4;
+		cube.position.x = 0;
 		cube.position.y = 2;
 		cube.position.z = 0;
 		cube.castShadow = true;
 		
 		return cube;
+	}
+
+	app.setCameraPerspective = function() {
+
+		var w = $('body').innerWidth();;
+		var h = $(document).height();
+
+		if (this.camera instanceof THREE.OrthographicCamera) {
+
+			this.camera = new THREE.PerspectiveCamera(
+				45, 
+				w / h, 
+				0.1, 
+				1000
+			);
+			
+			this.camera.position.x = -15;
+			this.camera.position.y = 15;
+			this.camera.position.z = 15;
+			this.camera.lookAt(this.scene.position);
+			
+			this.perspective = "Perspective";
+
+			// check this. might create too many controls
+			this.controls = new THREE.OrbitControls(this.camera);
+			this.controls.enabled = true;
+		};
+	}
+
+	app.setCameraOrthographic = function() {
+
+		var w = $('body').innerWidth();;
+		var h = $(document).height();
+
+		if (this.camera instanceof THREE.PerspectiveCamera) {
+
+			this.camera = new THREE.OrthographicCamera(
+				-20, 
+				 20, 
+				 10, 
+				-10,
+				-200,
+				500
+			);
+
+			this.camera.position.x = -15;
+			this.camera.position.y = 15;
+			this.camera.position.z = 15;
+			this.camera.lookAt(this.scene.position);
+			
+			this.perspective = "Orthographic";
+		}
+
+					// check this. might create too many controls
+			this.controls = new THREE.OrbitControls(this.camera);
+			this.controls.enabled = true;
 	}
 
 })();

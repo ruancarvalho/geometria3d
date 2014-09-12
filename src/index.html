@@ -9,6 +9,7 @@
 
 	<script type="text/javascript" src="libs/three.min.js"></script>
 	<script type="text/javascript" src="libs/OrbitControls.js"></script>
+	<script type="text/javascript" src="libs/Detector.js"></script>
 	<script type="text/javascript" src="libs/jquery.min.js"></script>
 	<script type="text/javascript" src="libs/stats.min.js"></script>
 	<script type="text/javascript" src="libs/dat.gui.min.js"></script>
@@ -43,7 +44,16 @@
 	            <li><a href="#">One more separated link</a></li>
 	          </ul>
             </li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">View <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+	            <li id="perspectiveButton"><a href="#">Perspective</a></li>
+	            <li id="orthoButton"><a href="#">Orthographic</a></li>
+	            <li class="divider"></li>
+	            <li id="topCameraButton"><a href="#">Top</a></li>
+	            <li id="topCameraButton"><a href="#">Bottom</a></li>
+	            <li id="topCameraButton"><a href="#">Front</a></li>
+	            <li id="topCameraButton"><a href="#">Back</a></li>
+	          </ul>
             <li><a href="#">Help</a></li>
           </ul>
         </div>
@@ -74,6 +84,10 @@
 		});
 
 		$('#cubeButton').on('click', geometria3D.addCube.bind(geometria3D));
+
+		// View Menu
+		$('#perspectiveButton').on('click', geometria3D.setCameraPerspective.bind(geometria3D));
+		$('#orthoButton').on('click', geometria3D.setCameraOrthographic.bind(geometria3D));
 
 	</script>
 </body>
